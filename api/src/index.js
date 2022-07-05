@@ -88,10 +88,10 @@ const server = new ApolloServer({
   context: ({ event }) => {
     return {
       driver,
-      driverConfig: { database: process.env.NEO4J_DATABASE || 'neo4j' },
       req: event,
     }
   },
+  driverConfig: { database: process.env.NEO4J_DATABASE || 'neo4j' },
   introspection: true,
   playground: true,
 })
