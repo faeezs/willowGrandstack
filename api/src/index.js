@@ -84,11 +84,14 @@ try {
  * generated resolvers to connect to the database.
  */
 const server = new ApolloServer({
-  context: {
-    driver,
-    driverConfig: { database: process.env.NEO4J_DATABASE || 'neo4j' },
-  },
   schema: schema,
+  context: ({ event }) => {
+    return {
+      driver,
+      driverConfig: { database: process.env.NEO4J_DATABASE || 'neo4j' },
+      req: event,
+    }
+  },
   introspection: true,
   playground: true,
 })
